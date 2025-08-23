@@ -179,20 +179,6 @@ namespace Microsoft.DotNet.NativeWrapper
             internal static extern int hostfxr_get_available_sdks(
                 string? exe_dir,
                 hostfxr_get_available_sdks_result_fn result);
-
-            [DllImport("libc", CharSet = UTF8, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-            private static extern IntPtr realpath(string path, IntPtr buffer);
-
-            [DllImport("libc", ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
-            private static extern void free(IntPtr ptr);
-
-            public static string? realpath(string path)
-            {
-                var ptr = realpath(path, IntPtr.Zero);
-                var result = PtrToStringUTF8(ptr);
-                free(ptr);
-                return result;
-            }
         }
     }
 }
