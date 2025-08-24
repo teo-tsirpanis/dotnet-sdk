@@ -71,7 +71,7 @@ namespace Microsoft.DotNet.NativeWrapper
                 string? dotnetExeFromPath = GetCommandPath(Constants.DotNet);
 
 #if NETCOREAPP
-                if (dotnetExeFromPath != null && !Interop.RunningOnWindows)
+                if (dotnetExeFromPath != null && !OperatingSystem.IsWindows())
                 {
                     // e.g. on Linux the 'dotnet' command from PATH is a symlink so we need to
                     // resolve it to get the actual path to the binary
@@ -107,7 +107,7 @@ namespace Microsoft.DotNet.NativeWrapper
         public static string? GetDotnetExeDirectory(Func<string, string?>? getEnvironmentVariable = null, Action<FormattableString>? log = null)
         {
             return GetDotnetExeDirectory(getEnvironmentVariable, null, log);
-            }
+        }
 
         public static string? GetDotnetExeDirectory(Func<string, string?>? getEnvironmentVariable, Func<string?>? getCurrentProcessPath, Action<FormattableString>? log = null)
         {

@@ -2,11 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 #if !NETCOREAPP
-using System.Runtime.CompilerServices;
-
 namespace Microsoft.DotNet.NativeWrapper
 {
-    public static unsafe partial class Interop
+    internal static unsafe partial class Interop
     {
         public static readonly bool RunningOnWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 

@@ -9,9 +9,8 @@ using System.Runtime.InteropServices.Marshalling;
 
 namespace Microsoft.DotNet.NativeWrapper
 {
-    public static partial class Interop
+    internal static partial class Interop
     {
-        public static bool RunningOnWindows => OperatingSystem.IsWindows();
         private static readonly string HostFxrPath;
 
         static Interop()
