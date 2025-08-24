@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>$(ResolverTargetFramework);net472</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DisableRuntimeMarshalling Condition="'$(TargetFramework)' == '$(ResolverTargetFramework)'">true</DisableRuntimeMarshalling>
   </PropertyGroup>
 
   <ItemGroup>
