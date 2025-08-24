@@ -106,20 +106,15 @@ namespace Microsoft.DotNet.NativeWrapper
 
         public static string? GetDotnetExeDirectory(Func<string, string?>? getEnvironmentVariable = null, Action<FormattableString>? log = null)
         {
-            if (getEnvironmentVariable == null)
-            {
-                getEnvironmentVariable = Environment.GetEnvironmentVariable;
+            return GetDotnetExeDirectory(getEnvironmentVariable, null, log);
             }
-            var environmentProvider = new EnvironmentProvider(getEnvironmentVariable);
-            return environmentProvider.GetDotnetExeDirectory(log);
-        }
 
-        public static string? GetDotnetExeDirectory(Func<string, string?> getEnvironmentVariable, Func<string?>? getCurrentProcessPath, Action<FormattableString>? log = null)
+        public static string? GetDotnetExeDirectory(Func<string, string?>? getEnvironmentVariable, Func<string?>? getCurrentProcessPath, Action<FormattableString>? log = null)
         {
             getEnvironmentVariable ??= Environment.GetEnvironmentVariable;
             getCurrentProcessPath ??= GetCurrentProcessPath;
             var environmentProvider = new EnvironmentProvider(getEnvironmentVariable, getCurrentProcessPath);
-            return environmentProvider.GetDotnetExeDirectory();
+            return environmentProvider.GetDotnetExeDirectory(log);
         }
 
         private static string? GetCurrentProcessPath()
